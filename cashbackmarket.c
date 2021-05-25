@@ -33,40 +33,22 @@ typedef struct cliente
 //FUNCOES
  
 char menu();
- 
- void cadastrar_cliente();
-
+void cadastrar_cliente();
 void cadastrar_produto();
-
 void listar_produtos();
-
 void comprar_produto();
- 
 void listar_clientes();
- 
-
 t_produto *obter_produto(FILE *arq_produtos, int id_produto);
- 
 t_cliente *obter_cliente(FILE *arq_clientes, int id_cliente);
- 
-
 void pesquisar_produto();
-
 void pagar_produto();
-
 void bonus();
-
 void pesquisar_cliente();
- 
 int existe_produto(FILE *arq_produtos, int id_produto);
- 
 int existe_cliente(FILE *arq_clientes, int id_cliente);
-  
 void excluir_produto();
-
 void excluir_cliente();
- 
-int str_somente_numeros(char str[]);
+ int str_somente_numeros(char str[]);
   
 int main(int argc, char *argv[])
 {
@@ -308,7 +290,7 @@ void cadastrar_produto()
  
 		// obtém o preço do produto
 		printf("Digite o preco do produto: ");
-		scanf("%4s%*c", str_preco);
+		scanf("%10s%*c", str_preco);
  
 		fseek(stdin, 0, SEEK_END); 
  
@@ -1120,6 +1102,12 @@ void excluir_cliente()
 	fseek(stdin, 0, SEEK_END); 
 }
 void bonus(){ 
+		int percent;
+		system(limpar_tela);
+		printf("Digite a percentagem de bonificacao desejada: ");
+		scanf("%d", &percent);
+		system(limpar_tela);
+		printf("\n================== CASHBACK RETORNADO  ==================\n\n");
     FILE *arquivo;
     char cc;
     arquivo = fopen("Cashback.dat","r");
