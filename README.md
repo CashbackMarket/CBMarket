@@ -8,6 +8,7 @@ referente ao gasto dele retornado com y% pré definido pelo varejista, que será
 no próprio mercado pelo cliente no mês seguinte.
 
 ## O programa irá conter
+
 1. Cadastro de Clientes
   
   a. Dados do Cliente
