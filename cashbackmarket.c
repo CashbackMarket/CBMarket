@@ -35,28 +35,16 @@ typedef struct cliente
  
 //FUNCOES
  
-//Exibe o menu com todas as opções do programa
- 
 char menu();
  
-//Cadastro um cliente pedindo apenas o nome
- 
-void cadastrar_cliente();
-
-//Cadastra um produto com nome e preço
+ void cadastrar_cliente();
 
 void cadastrar_produto();
- 
- //Mostra todos os produtos cadastrados
 
 void listar_produtos();
 
-//Comprar Produto
 void comprar_produto();
  
-/**
- * Exibe todos os clientes cadastrados
- */
 void listar_clientes();
  
 /**
@@ -79,16 +67,11 @@ t_produto *obter_produto(FILE *arq_produtos, int id_produto);
  */
 t_cliente *obter_cliente(FILE *arq_clientes, int id_cliente);
  
-/**
- * Pesquisa um produto e exibe suas informações
- */
+
 void pesquisar_produto();
 
 void pagar_produto();
- 
-/**
- * Pesquisa um cliente e exibe suas informações
- */
+
 void pesquisar_cliente();
  
 /**
@@ -111,12 +94,11 @@ int existe_produto(FILE *arq_produtos, int id_produto);
  */
 int existe_cliente(FILE *arq_clientes, int id_cliente);
   
-/**
- * Exclui um produto do arquivo
- */
+
 void excluir_produto();
- 
-/**
+
+void excluir_cliente();
+ /**
  * Informa se a string é um número
  *
  * Parâmetros:
@@ -124,8 +106,7 @@ void excluir_produto();
  * retorno: 1 se a string só conter números ou 0 caso contrário
  */
 int str_somente_numeros(char str[]);
- 
- 
+  
 int main(int argc, char *argv[])
 {
 	char resp;
@@ -152,9 +133,9 @@ int main(int argc, char *argv[])
 		else if(resp == '7')
 			pesquisar_cliente();
     else if(resp == '8')
-			comprar_produto();
+      excluir_cliente();
     else if(resp == '9')
-      pagar_produto();
+			comprar_produto();
 		else if(resp == '0') // se for igual a 0, então sai do loop while
 			break;
 		else
@@ -184,7 +165,7 @@ char menu()
 	printf("5 - Cadastrar um cliente\n");
 	printf("6 - Listar todos os clientes\n");
 	printf("7 - Pesquisar por cliente\n");
-  printf("8 - Efetuar uma compra\n");
+  printf("8 - Excluir um cliente\n");
 	printf("0 - Sair\n");
 	printf("Digite o numero da opcao: ");
 	scanf("%1s%*c", resp); // o *c pega o Enter e descarta
@@ -786,29 +767,28 @@ t_produto *obter_produto(FILE *arq_produtos, int id_produto)
  
 // função para atualizar um produto
 // recebe o ponteiro para o arquivo e o produto
-void atualizar_produtos(FILE *arq_produtos, t_produto *produto_comprado)
+void atualizar_produtos(FILE *cashback, t_produto *produto_comprado)
 {
 	// vai para o início do arquivo
-	rewind(arq_produtos);
+	rewind(cashback);
  
 	t_produto produto;
 	while(1) // loop para percorrer o arquivo
 	{
  
 		// fread retorna o número de elementos lidos com sucesso
-		size_t result = fread(&produto, sizeof(t_produto), 1, arq_produtos);
+		size_t result = fread(&produto, sizeof(t_produto), 1, cashback);
  
 		// se for 0, é porque não há mais elemento, então sai do loop
 		if(result == 0)
 			break;
  
-		// verifica se os ID's são iguais
 		if(produto.id == produto_comprado->id)
 		{
 			// fseek posiciona o arquivo
-			fseek(arq_produtos, - sizeof(t_produto), SEEK_CUR);
+			fseek(cashback, - sizeof(t_produto), SEEK_CUR);
 			// atualiza o produto
-			fwrite(produto_comprado, sizeof(t_produto), 1, arq_produtos);
+			fwrite(produto_comprado, sizeof(t_produto), 1, cashback);
 			break; // sai do loop
 		}
 	}
@@ -917,7 +897,7 @@ void comprar_produto()
 	// rb+ abre para leitura/atualização
 	FILE *arq_produtos = fopen("produtos.bin", "rb+");
 	FILE *arq_clientes = fopen("clientes.bin", "rb+");
- 
+ 	FILE *cashback = fopen("cashback.bin", "rb+");
 	// se não conseguiu abrir, então cria o arquivo
 	// wb+ abre para escrita/atualização (cria o arquivo se ele NÃO existir)
 	if(arq_produtos == NULL)
@@ -929,7 +909,16 @@ void comprar_produto()
 			exit(1); // aborta o programa
 		}
 	}
- 
+ 	if(cashback == NULL)
+	{
+		cashback = fopen("cashback.bin", "wb+");
+		if(cashback == NULL)
+		{
+			printf("\nFalha ao criar arquivo(s)!\n");
+			exit(1); // aborta o programa
+		}
+	}
+
 	if(arq_clientes == NULL)
 	{
 		arq_clientes = fopen("clientes.bin", "wb+");
@@ -951,7 +940,6 @@ void comprar_produto()
 		// se caiu aqui é porque o ID possui somente números, então
 		// preenche a variável "id_cliente" com o valor de "str_id_cliente"
 		sscanf(str_id_cliente, "%d", &id_cliente);
- 
 		// verifica se o ID do do cliente existe
 		if(existe_cliente(arq_clientes, id_cliente))
 		{
@@ -977,10 +965,9 @@ void comprar_produto()
 					// se chegou aqui é porque o produto existe
 	
 						// id_cliente do produto para associar o cliente
-						// ao aluguel do produto em questão
 						produto->id_cliente = id_cliente;
 						atualizar_produtos(arq_produtos, produto); // atualiza o produto no arquivo
-						printf("\nproduto \"%s\" Comprado com sucesso!\n", produto->nome);
+						printf("\nproduto \"%s\" Comprado com sucesso no valor de R$ %.2lf !\n", produto->nome,produto->preco);
 					
 					free(produto); // libera o produto alocado
 				}
@@ -999,6 +986,8 @@ void comprar_produto()
 	// fecha os arquivos
 	fclose(arq_clientes);
 	fclose(arq_produtos);
+	fclose(cashback);
+
  
 	printf("\nPressione <Enter> para continuar...");
 	scanf("%*c");
@@ -1067,5 +1056,97 @@ void pagar_produto()
 	printf("\nPressione <Enter> para continuar...");
 	scanf("%*c");
  
+	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+}
+void excluir_cliente()
+{
+	char str_id_cliente[10];
+	int id_cliente;
+ 
+	printf("\nDigite o ID do cliente: ");
+	scanf("%10s%*c", str_id_cliente);
+ 
+	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+ 
+	// verifica se str_id_cliente só contém números
+	if(str_somente_numeros(str_id_cliente) == 1)
+	{
+		// se chegou aqui é porque o ID do cliente é válido
+		sscanf(str_id_cliente, "%d", &id_cliente);
+		// rb abre para leitura (o arquivo deve existir)
+		FILE *arq_clientes = fopen("clientes.bin", "rb");
+ 
+		if(arq_clientes == NULL)
+		{
+			printf("\nFalha ao abrir arquivo(s)!\n");
+			exit(1); // aborta o programa
+		}
+ 
+		// verifica se o cliente existe
+		if(existe_cliente(arq_clientes, id_cliente) == 1)
+		{
+			char nome_cliente[MAX];
+			// abre um novo arquivo temporário
+			FILE *arq_temp = fopen("temp_clientes.bin", "a+b");
+			if(arq_temp == NULL)
+			{
+				printf("\nFalha ao criar arquivo temporario!\n");
+				fclose(arq_clientes);
+				exit(1); // aborta o programa
+			}
+			rewind(arq_clientes); // vai para o início do arquivo
+ 
+			t_cliente cliente;
+			while(1) // loop para percorrer o arquivo
+			{
+ 
+				// fread retorna o número de elementos lidos com sucesso
+				size_t result = fread(&cliente, sizeof(t_cliente), 1, arq_clientes);
+ 
+				// se for 0, é porque não há mais elemento, então sai do loop
+				if(result == 0)
+					break;
+ 
+				// só copia pro novo arquivo se for diferente
+				if(cliente.id != id_cliente)
+				{
+					// escreve no arquivo temporário
+					fwrite(&cliente, sizeof(t_cliente), 1, arq_temp);
+				}
+				else
+					strcpy(nome_cliente, cliente.nome);
+			}
+			// antes de fazer operações de remover arquivo e renomear,
+			// é preciso fechar os dois arquivos
+			fclose(arq_clientes);
+			fclose(arq_temp);
+ 
+			// depois de fechar o arquivo, então tentamos remover
+			if(remove("clientes.bin") != 0)
+				printf("\nErro ao deletar o arquivo \"clientes.bin\"\n");
+			else
+			{
+				// renomeia o arquivo
+				int r = rename("temp_clientes.bin", "clientes.bin");
+				if(r != 0)
+				{
+					printf("\nPermissao negada para renomear o arquivo!\n");
+					printf("Feche esse programa bem como o arquivo \"temp_clientes.bin\" e renomeie manualmente para \"clientes.bin\"\n");
+				}
+				else
+					printf("\ncliente \"%s\" removido com sucesso!\n", nome_cliente);
+			}
+		}
+		else
+		{
+			fclose(arq_clientes);
+			printf("\nNao existe cliente com o ID \"%d\".\n", id_cliente);
+		}
+	}
+	else
+		printf("\nO ID so pode conter numeros!\n");
+ 
+	printf("\nPressione <Enter> para continuar...");
+	scanf("%*c");
 	fseek(stdin, 0, SEEK_END); // não recomendável o uso
 }
