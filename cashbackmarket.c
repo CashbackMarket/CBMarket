@@ -22,7 +22,6 @@ typedef struct produto
 	float preco;
 } t_produto;
  
- 
 //definição da struct cliente
 typedef struct cliente
 {
@@ -71,6 +70,8 @@ t_cliente *obter_cliente(FILE *arq_clientes, int id_cliente);
 void pesquisar_produto();
 
 void pagar_produto();
+
+void bonus();
 
 void pesquisar_cliente();
  
@@ -134,13 +135,15 @@ int main(int argc, char *argv[])
 			pesquisar_cliente();
     else if(resp == '8')
       excluir_cliente();
-    else if(resp == '9')
+    else if(resp == 'A' || resp == 'a')
 			comprar_produto();
+		else if(resp == 'b' || resp == 'B')
+			 bonus();
 		else if(resp == '0') // se for igual a 0, então sai do loop while
 			break;
 		else
 		{
-			printf("\nOpcao invalida! Pressione  | Enter |  para continuar...");
+			printf("\nOpcao invalida! Pressione  | Ebnter |  para continuar...");
 			scanf("%*c");
 			// uma forma de "limpar" o buffer de entrada
 			fseek(stdin, 0, SEEK_END); // não recomendável o uso
@@ -157,16 +160,22 @@ char menu()
 {
 	char resp[2];
  
-	printf("------------------------------ Cashback Market ------------------------------");
-	printf("\n\n1 - Cadastrar um produto\n");
-	printf("2 - Listar todos os produtos\n");
-	printf("3 - Pesquisar por produto\n");
-	printf("4 - Excluir um produto\n");
-	printf("5 - Cadastrar um cliente\n");
-	printf("6 - Listar todos os clientes\n");
-	printf("7 - Pesquisar por cliente\n");
-  printf("8 - Excluir um cliente\n");
-	printf("0 - Sair\n");
+	printf("------------------------- Cashback Market -----------------------");
+	printf("\n\n---------------------------- Produtos ---------------------------\n\n");
+	printf("| 1 | - Cadastrar um produto\n");
+	printf("| 2 | - Listar todos os produtos\n");
+	printf("| 3 | - Pesquisar por produto\n");
+	printf("| 4 | - Excluir um produto\n");
+	printf("\n---------------------------- Clientes ---------------------------\n\n");
+	printf("| 5 | - Cadastrar um cliente\n");
+	printf("| 6 | - Listar todos os clientes\n");
+	printf("| 7 | - Pesquisar por cliente\n");
+  printf("| 8 | - Excluir um cliente\n");
+	printf("\n---------------------- Compras & Cashback -----------------------\n\n");
+	printf("| A | - Realizar compra\n");
+	printf("| B | - Bonificar Clientes\n");
+	printf("\n------------------------------ FIM ------------------------------\n\n");
+	printf("| 0 | - Sair\n");
 	printf("Digite o numero da opcao: ");
 	scanf("%1s%*c", resp); // o *c pega o Enter e descarta
  
@@ -1150,3 +1159,20 @@ void excluir_cliente()
 	scanf("%*c");
 	fseek(stdin, 0, SEEK_END); // não recomendável o uso
 }
+void bonus(){ 
+    FILE *arquivo;
+    char cc;
+    arquivo = fopen("Cashback.dat","r");
+    if(arquivo){
+        while((cc=getc(arquivo))!= EOF){
+            printf("%c",cc);
+        }
+        system("pause");
+        }else{
+            printf("Nao foi possivel encontrar nada no arquivo\n");
+        return 0;
+    } 
+    printf("\nPressione enter para voltar ao menu principal\n");
+    getchar();
+    system("cls");
+} 
