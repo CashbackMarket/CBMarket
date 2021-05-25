@@ -6,13 +6,13 @@ referente ao gasto dele retornado com y% pré definido pelo varejista, que será
 
 ## O programa irá conter
 
-1. Cadastro de Clientes
+### Cadastro de Clientes
   
 a. Dados do Cliente
   
 b. Criação de um Cartão Fidelidade no qual será retornado o cashback. == ID Gerado Automático de Forma Crescente
 
-2. Cadastro dos Produtos
+### Cadastro dos Produtos
   
 a. Nome
   
@@ -20,7 +20,7 @@ b. Valor
   
 c. Código de Barras == ID Gerado Automático de Forma Crescente
 
-3. O programa deverá retornar
+### O programa deverá retornar
 
 a. Bonificação aos 10 clientes melhores posicionados no ranking.
   
