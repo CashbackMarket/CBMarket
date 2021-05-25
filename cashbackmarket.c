@@ -1,5 +1,3 @@
-// testa se o sistema é Windows, pois o "cls" funciona somente no Windows,
-// senão utiliza o "clear" que é o comando para limpar a tela no Linux
 #ifdef __WIN32
 #define limpar_tela "cls"
 #else
@@ -46,24 +44,9 @@ void comprar_produto();
  
 void listar_clientes();
  
-/**
- * Procura um produto pelo id do produto
- *
- * Parâmetros:
- *   arq_produtos: ponteiro para um arquivo aberto
- *   id_produto: ID do produto que será buscado
- * retorno: um ponteiro para o produto encontrado ou NULL caso o ID não exista
- */
+
 t_produto *obter_produto(FILE *arq_produtos, int id_produto);
  
-/**
- * Procura um cliente pelo seu id
- *
- * Parâmetros:
- *   arq_clientes: ponteiro para um arquivo aberto
- *   id_cliente: ID do cliente que será buscado
- * retorno: um ponteiro para o cliente encontrado ou NULL caso o ID não exista
- */
 t_cliente *obter_cliente(FILE *arq_clientes, int id_cliente);
  
 
@@ -75,37 +58,14 @@ void bonus();
 
 void pesquisar_cliente();
  
-/**
- * Procura um produto pelo seu id e informa se ele foi encontrado
- *
- * Parâmetros:
- *   arq_produtos: ponteiro para um arquivo aberto
- *   id_produto: ID do produto que será buscado
- * retorno: 1 para produto encontrado ou 0 caso o ID não exista
- */
 int existe_produto(FILE *arq_produtos, int id_produto);
  
-/**
- * Procura um cliente pelo seu id e informa se ele foi encontrado
- *
- * Parâmetros:
- *   arq_clientes: ponteiro para um arquivo aberto
- *   id_cliente: ID do cliente que será buscado
- * retorno: 1 se o cliente existe ou 0 caso o ID não exista
- */
 int existe_cliente(FILE *arq_clientes, int id_cliente);
   
-
 void excluir_produto();
 
 void excluir_cliente();
- /**
- * Informa se a string é um número
- *
- * Parâmetros:
- *   str: ponteiro para uma cadeia de caracteres
- * retorno: 1 se a string só conter números ou 0 caso contrário
- */
+ 
 int str_somente_numeros(char str[]);
   
 int main(int argc, char *argv[])
@@ -146,7 +106,7 @@ int main(int argc, char *argv[])
 			printf("\nOpcao invalida! Pressione  | Ebnter |  para continuar...");
 			scanf("%*c");
 			// uma forma de "limpar" o buffer de entrada
-			fseek(stdin, 0, SEEK_END); // não recomendável o uso
+			fseek(stdin, 0, SEEK_END); 
 		}
 		system(limpar_tela);
 	}
@@ -180,7 +140,7 @@ char menu()
 	scanf("%1s%*c", resp); // o *c pega o Enter e descarta
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	// se chegou aqui, é porque a opção é válida
 	return resp[0];
@@ -263,7 +223,7 @@ void cadastrar_cliente()
 	scanf("%99[^\n]%*c", cliente.telefone);
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	// se o ponteiro não estiver no final do arquivo nada é escrito
 	fseek(arq_clientes, 0, SEEK_END);
@@ -278,7 +238,7 @@ void cadastrar_cliente()
 	scanf("%*c"); // pega o Enter e descarta
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
  
  
@@ -338,7 +298,7 @@ void cadastrar_produto()
 	scanf("%99[^\n]%*c", produto.nome);
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	do
 	{
@@ -350,7 +310,7 @@ void cadastrar_produto()
 		printf("Digite o preco do produto: ");
 		scanf("%4s%*c", str_preco);
  
-		fseek(stdin, 0, SEEK_END); // não recomendável o uso
+		fseek(stdin, 0, SEEK_END); 
  
 		// verifica se o preço possui somente números
 		somente_numeros = str_somente_numeros(str_preco);
@@ -384,7 +344,7 @@ void cadastrar_produto()
 	scanf("%*c"); // pega o Enter e descarta
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
  
  
@@ -403,7 +363,7 @@ void listar_clientes()
 		scanf("%*c"); // pega o Enter e descarta
  
 		// uma forma de "limpar" o buffer de entrada
-		fseek(stdin, 0, SEEK_END); // não recomendável o uso
+		fseek(stdin, 0, SEEK_END); 
 		return;
 	}
  
@@ -442,7 +402,7 @@ void listar_clientes()
 	scanf("%*c");
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
  
  
@@ -496,7 +456,7 @@ void listar_produtos()
 		scanf("%*c"); // pega o Enter e descarta
  
 		// uma forma de "limpar" o buffer de entrada
-		fseek(stdin, 0, SEEK_END); // não recomendável o uso
+		fseek(stdin, 0, SEEK_END); 
 		return;
 	}
 	// variável que indica se encontrou pelo menos 1 produto
@@ -549,7 +509,7 @@ void listar_produtos()
 	scanf("%*c");
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
  
  
@@ -622,7 +582,7 @@ void pesquisar_produto()
 	scanf("%*c");
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
  
  
@@ -680,7 +640,7 @@ void pesquisar_cliente()
 	scanf("%*c");
  
 	// uma forma de "limpar" o buffer de entrada
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
  
  
@@ -812,7 +772,7 @@ void excluir_produto()
 	printf("\nDigite o ID do produto: ");
 	scanf("%10s%*c", str_id_produto);
  
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	// verifica se str_id_produto só contém números
 	if(str_somente_numeros(str_id_produto) == 1)
@@ -896,7 +856,7 @@ void excluir_produto()
  
 	printf("\nPressione <Enter> para continuar...");
 	scanf("%*c");
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
 void comprar_produto()
 {
@@ -942,7 +902,7 @@ void comprar_produto()
 	printf("\nDigite o ID do cliente: ");
 	scanf("%10s%*c", str_id_cliente);
  
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	if(str_somente_numeros(str_id_cliente) == 1)
 	{
@@ -958,7 +918,7 @@ void comprar_produto()
 			printf("\nDigite o ID do produto: ");
 			scanf("%10s%*c", str_id_produto);
  
-			fseek(stdin, 0, SEEK_END); // não recomendável o uso
+			fseek(stdin, 0, SEEK_END); 
  
 			if(str_somente_numeros(str_id_produto) == 1)
 			{
@@ -1001,7 +961,7 @@ void comprar_produto()
 	printf("\nPressione <Enter> para continuar...");
 	scanf("%*c");
  
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
 void pagar_produto()
 {
@@ -1026,7 +986,7 @@ void pagar_produto()
 	printf("\nDigite o ID do produto: ");
 	scanf("%10s%*c", str_id_produto);
  
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	if(str_somente_numeros(str_id_produto) == 1)
 	{
@@ -1065,7 +1025,7 @@ void pagar_produto()
 	printf("\nPressione <Enter> para continuar...");
 	scanf("%*c");
  
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
 void excluir_cliente()
 {
@@ -1075,7 +1035,7 @@ void excluir_cliente()
 	printf("\nDigite o ID do cliente: ");
 	scanf("%10s%*c", str_id_cliente);
  
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
  
 	// verifica se str_id_cliente só contém números
 	if(str_somente_numeros(str_id_cliente) == 1)
@@ -1157,7 +1117,7 @@ void excluir_cliente()
  
 	printf("\nPressione <Enter> para continuar...");
 	scanf("%*c");
-	fseek(stdin, 0, SEEK_END); // não recomendável o uso
+	fseek(stdin, 0, SEEK_END); 
 }
 void bonus(){ 
     FILE *arquivo;
