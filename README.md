@@ -5,12 +5,12 @@ clientes que estão cadastrados no banco de dados no qual realizaram o maior val
 referente ao gasto dele retornado com y% pré definido pelo varejista, que será consumido no próprio mercado pelo cliente no mês seguinte.
 
 
-##Link do Slide de apresentação do projeto:
+## Link do Slide de apresentação do projeto:
 
 https://1drv.ms/p/s!AtpB_3e_Nh0ioYZh92xgK8_I5wm4JA?e=XW8fUV
 
 
-##Link demonstração da aplicação: 
+## Link demonstração da aplicação: 
 
 https://www.youtube.com/watch?v=llMytkA0pY8
 
