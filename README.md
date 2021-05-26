@@ -4,6 +4,18 @@ O programa consiste em uma ferramenta que auxilia os mercados a aplicarem promo�
 clientes que estão cadastrados no banco de dados no qual realizaram o maior valor em transações com o mercado durante o mês, esse cashback retornará ao cliente um valor X
 referente ao gasto dele retornado com y% pré definido pelo varejista, que será consumido no próprio mercado pelo cliente no mês seguinte.
 
+
+##Link do Slide de apresentação do projeto:
+
+https://1drv.ms/p/s!AtpB_3e_Nh0ioYZh92xgK8_I5wm4JA?e=XW8fUV
+
+
+##Link demonstração da aplicação: 
+
+https://www.youtube.com/watch?v=llMytkA0pY8
+
+
+
 ## O programa irá conter
 
 ### Cadastro de Clientes
