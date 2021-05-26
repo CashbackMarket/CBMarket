@@ -1,5 +1,6 @@
 /*Cashback Market
 	Luigi Guido Gontijo Barreto - 201900963
+	Guilherme Nogueira Coelho Salgado - 201904213
 
 */
 
