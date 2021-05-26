@@ -1,3 +1,8 @@
+/*Cashback Market
+	Luigi Guido Gontijo Barreto - 201900963
+
+*/
+
 #ifdef __WIN32
 #define limpar_tela "cls"
 #else
