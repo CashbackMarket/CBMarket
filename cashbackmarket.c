@@ -1121,7 +1121,7 @@ void bonus(){
         while((cc=getc(arquivo))!= EOF){
             printf("%c",cc);
         }
-        system("pause");
+        getchar();
         }else{
             printf("Nao foi possivel encontrar nada no arquivo\n");
         return 0;
