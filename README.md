@@ -7,7 +7,7 @@ referente ao gasto dele retornado com y% pré definido pelo varejista, que será
 ## Tutorial:
 1. Foi utilizado o Visual Studio Code na sua ultima versão para criar e compilar o projeto.
 
-  a. basta compilar o arquivo cashbackmarket.c e executar normalmente (Testado no Windows, mas a tendência é que funcione normalmente também no linux)
+  2. basta compilar o arquivo cashbackmarket.c e executar normalmente (Testado no Windows, mas a tendência é que funcione normalmente também no linux)
 
 
 
