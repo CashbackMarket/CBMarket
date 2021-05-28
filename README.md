@@ -4,6 +4,13 @@ O programa consiste em uma ferramenta que auxilia os mercados a aplicarem promo�
 clientes que estão cadastrados no banco de dados no qual realizaram o maior valor em transações com o mercado durante o mês, esse cashback retornará ao cliente um valor X
 referente ao gasto dele retornado com y% pré definido pelo varejista, que será consumido no próprio mercado pelo cliente no mês seguinte.
 
+## Tutorial:
+1. Foi utilizado o Visual Studio Code na sua ultima versão para criar e compilar o projeto.
+
+  a. basta compilar o arquivo cashbackmarket.c e executar normalmente (Testado no Windows, mas a tendência é que funcione normalmente também no linux)
+
+
+
 
 ## Link do Slide de apresentação do projeto:
 
