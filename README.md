@@ -1,13 +1,30 @@
 # CashbackMarket
 
-O programa consiste em uma ferramenta que auxilia os mercados a aplicarem promoções de cashback para seus clientes mais assíduos, esse aplicativo criará um ranking com os 10
+Um projeto Algoritmos e Estrutura de Dados - Turma E (Noturno)
+
+
+
+Professor:
+
+  Ronaldo Martins da Costa
+
+Alunos: 
+
+Luigi Guido Gontijo Barreto, 201900963
+
+Guilherme Nogueira Coelho Salgado, 201904213 
+
+
+
+
+*O programa consiste em uma ferramenta que auxilia os mercados a aplicarem promoções de cashback para seus clientes mais assíduos, esse aplicativo criará um ranking com os 10
 clientes que estão cadastrados no banco de dados no qual realizaram o maior valor em transações com o mercado durante o mês, esse cashback retornará ao cliente um valor X
-referente ao gasto dele retornado com y% pré definido pelo varejista, que será consumido no próprio mercado pelo cliente no mês seguinte.
+referente ao gasto dele retornado com y% pré definido pelo varejista, que será consumido no próprio mercado pelo cliente no mês seguinte.*
 
 ## Tutorial:
 1. Foi utilizado o Visual Studio Code na sua ultima versão para criar e compilar o projeto.
 
-  2. basta compilar o arquivo cashbackmarket.c e executar normalmente (Testado no Windows, mas a tendência é que funcione normalmente também no linux)
+  2. basta compilar o arquivo cashbackmarket.c e executar normalmente ***(Testado no Windows, mas a tendência é que funcione normalmente também no linux)***
 
 
 
