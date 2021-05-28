@@ -20,20 +20,20 @@ https://www.youtube.com/watch?v=llMytkA0pY8
 
 ### Cadastro de Clientes
   
-a. Dados do Cliente
+  a. Dados do Cliente
   
-b. Criação de um Cartão Fidelidade no qual será retornado o cashback. == ID Gerado Automático de Forma Crescente
+  b. Criação de um Cartão Fidelidade no qual será retornado o cashback. == ID Gerado Automático de Forma Crescente
 
 ### Cadastro dos Produtos
   
-a. Nome
+  a. Nome
   
-b. Valor
+  b. Valor
   
-c. Código de Barras == ID Gerado Automático de Forma Crescente
+  c. Código de Barras == ID Gerado Automático de Forma Crescente
 
 ### O programa deverá retornar
 
-a. Bonificação aos 10 clientes melhores posicionados no ranking.
+  a. Bonificação aos 10 clientes melhores posicionados no ranking.
   
-c. Será definido pelo varejista a percentagem de desconto de acordo com o lucro mensal do Supermercado
+  c. Será definido pelo varejista a percentagem de desconto de acordo com o lucro mensal do Supermercado
