@@ -750,7 +750,30 @@ void atualizar_produtos(FILE *cashback, t_produto *produto_comprado)
 		}
 	}
 }
- 
+// função responsável por bonificar clientes
+void bonus(){ 
+		int percent;
+		system(limpar_tela);
+		printf("Digite a percentagem de bonificacao desejada: ");
+		scanf("%d", &percent);
+		system(limpar_tela);
+		printf("\n================== CASHBACK RETORNADO  ==================\n\n");
+    FILE *arquivo;
+    char cc;
+    arquivo = fopen("Cashback.dat","r");
+    if(arquivo){
+        while((cc=getc(arquivo))!= EOF){
+            printf("%c",cc);
+        }
+        getchar();
+        }else{
+            printf("Nao foi possivel encontrar nada no arquivo\n");
+        return 0;
+    } 
+    printf("\nPressione enter para voltar ao menu principal\n");
+    getchar();
+    system("cls");
+} 
 // função responsável por excluir produtos
 void excluir_produto()
 {
@@ -1107,26 +1130,3 @@ void excluir_cliente()
 	scanf("%*c");
 	fseek(stdin, 0, SEEK_END); 
 }
-void bonus(){ 
-		int percent;
-		system(limpar_tela);
-		printf("Digite a percentagem de bonificacao desejada: ");
-		scanf("%d", &percent);
-		system(limpar_tela);
-		printf("\n================== CASHBACK RETORNADO  ==================\n\n");
-    FILE *arquivo;
-    char cc;
-    arquivo = fopen("Cashback.dat","r");
-    if(arquivo){
-        while((cc=getc(arquivo))!= EOF){
-            printf("%c",cc);
-        }
-        getchar();
-        }else{
-            printf("Nao foi possivel encontrar nada no arquivo\n");
-        return 0;
-    } 
-    printf("\nPressione enter para voltar ao menu principal\n");
-    getchar();
-    system("cls");
-} 
