@@ -118,7 +118,7 @@ char menu()
 	printf("| 5 | - Cadastrar um cliente\n");
 	printf("| 6 | - Listar todos os clientes\n");
 	printf("| 7 | - Pesquisar por cliente\n");
-  printf("| 8 | - Excluir um cliente\n");
+  	printf("| 8 | - Excluir um cliente\n");
 	printf("\n---------------------- Compras & Cashback -----------------------\n\n");
 	printf("| A | - Realizar compra\n");
 	printf("| B | - Bonificar Clientes\n");
